@@ -14,9 +14,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.jbng.utils.MoveReader;
+import fr.jbng.utils.FileReader;
 
-public class MoveReaderTest {
+public class FileReaderTest {
 	private Path filePath;
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
 
@@ -37,7 +37,7 @@ public class MoveReaderTest {
 	public void testFileLoading() throws IOException {
 		assertNotNull("Test file move.txt missing",
 				getClass().getResource("/move.txt"));
-		MoveReader reader = new MoveReader();
+		FileReader reader = new FileReader();
 		reader.setFilePath(filePath);
 		reader.processLineByLine();
 	}

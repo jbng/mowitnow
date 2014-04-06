@@ -1,4 +1,4 @@
-package fr.jbng.scene;
+package fr.jbng.utils;
 
 public class GrassMap {
 	private int n;

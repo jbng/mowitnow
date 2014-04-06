@@ -9,16 +9,16 @@ import java.util.Scanner;
 
 import fr.jbng.constants.ParsingRegexp;
 
-public class MoveReader {
+public class FileReader {
 	private Path filePath = null;
 
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
 
-	public MoveReader() {
+	public FileReader() {
 
 	}
 
-	public MoveReader(String filename) {
+	public FileReader(String filename) {
 		filePath = Paths.get(filename);
 	}
 
@@ -51,18 +51,7 @@ public class MoveReader {
 		}
 	}
 
-	protected void processLine(String aLine) {
-		// use a second Scanner to parse the content of each line
-		Scanner scanner = new Scanner(aLine);
-		scanner.useDelimiter(" ");
-		if (scanner.hasNext()) {
-			// assumes the line has a certain structure
-			String name = scanner.next();
-			log(name);
-		} else {
-			log("Empty or invalid line. Unable to process.");
-		}
-	}
+	
 
 	private static void log(Object aObject) {
 		System.out.println(String.valueOf(aObject));

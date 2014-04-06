@@ -2,8 +2,8 @@ package fr.jbng.logic;
 
 import fr.jbng.actions.api.Step;
 import fr.jbng.constants.Direction;
-import fr.jbng.scene.GrassMap;
 import fr.jbng.utils.Coordinates;
+import fr.jbng.utils.GrassMap;
 
 public class MoveResolver {
 	

@@ -1,11 +1,11 @@
 import java.io.IOException;
 
-import fr.jbng.utils.MoveReader;
+import fr.jbng.utils.FileReader;
 
 public class Main {
 
 	public static void main(String... args) throws IOException {
-		MoveReader parser = new MoveReader("C:\\temp\\move.txt");
+		FileReader parser = new FileReader("C:\\temp\\move.txt");
 		parser.processLineByLine();
 	}
 
