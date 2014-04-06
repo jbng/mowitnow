@@ -3,7 +3,7 @@ package fr.jbng.actors.impl;
 import fr.jbng.actions.api.Step;
 import fr.jbng.actors.api.Mower;
 import fr.jbng.constants.Positioning;
-import fr.jbng.logic.Coordinates;
+import fr.jbng.utils.Coordinates;
 
 public class MowerImpl implements Mower {
 	private Coordinates coordinates;

@@ -2,7 +2,7 @@ package fr.jbng.actors.api;
 
 import fr.jbng.actions.api.Step;
 import fr.jbng.constants.Positioning;
-import fr.jbng.logic.Coordinates;
+import fr.jbng.utils.Coordinates;
 
 public interface Mower {
 	void move(Step step);

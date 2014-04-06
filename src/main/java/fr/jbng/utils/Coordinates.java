@@ -1,4 +1,4 @@
-package fr.jbng.logic;
+package fr.jbng.utils;
 
 
 

@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import fr.jbng.logic.MoveReader;
+import fr.jbng.utils.MoveReader;
 
 public class Main {
 
