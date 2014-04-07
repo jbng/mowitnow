@@ -7,6 +7,10 @@ public class StepImpl implements Step {
 	private Direction direction;
 	private int unit;
 
+	public StepImpl(Direction direction, int unit){
+		this.setDirection(direction);
+		this.setUnit(unit);
+	}
 	public Direction getDirection() {
 
 		return direction;
@@ -23,6 +27,10 @@ public class StepImpl implements Step {
 
 	public void setUnit(int unit) {
 		this.unit = unit;
+	}
+	
+	public String toString(){
+		return this.direction.toString()+ unit;
 	}
 
 }
