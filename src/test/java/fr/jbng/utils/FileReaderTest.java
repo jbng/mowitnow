@@ -37,8 +37,7 @@ public class FileReaderTest {
 	public void testFileLoading() throws IOException {
 		assertNotNull("Test file move.txt missing",
 				getClass().getResource("/move.txt"));
-		FileReader reader = new FileReader();
-		reader.setFilePath(filePath);
+		FileReader reader = new FileReader("/move.txt");
 		reader.processLineByLine();
 	}
 	

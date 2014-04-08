@@ -8,18 +8,18 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 import fr.jbng.constants.ParsingRegexp;
+import fr.jbng.logic.SceneManager;
 
 public class FileReader {
 	private Path filePath = null;
 
+	private SceneManager sceneManager;
+
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
 
-	public FileReader() {
-
-	}
-
 	public FileReader(String filename) {
-		filePath = Paths.get(filename);
+		this.filePath = Paths.get(filename);
+		this.sceneManager = new SceneManager();
 	}
 
 	public Path getFilePath() {
@@ -34,24 +34,24 @@ public class FileReader {
 		try (Scanner scanner = new Scanner(filePath, ENCODING.name())) {
 			while (scanner.hasNextLine()) {
 				String currentLine = scanner.nextLine();
-				if(currentLine.matches(ParsingRegexp.MAP_SETTING.get())){
-					
-					log(currentLine);
-				}
-				 
-				if(currentLine.matches(ParsingRegexp.MOW_SETTING.get())){
-					log(currentLine);
+				if (currentLine.matches(ParsingRegexp.MAP_SETTING.get())) {
+					sceneManager.setGrassMap(currentLine);
+
 				}
 
-				if(currentLine.matches(ParsingRegexp.MOVE_SEQUENCE.get())){
-					log(currentLine);
+				if (currentLine.matches(ParsingRegexp.MOW_SETTING.get())) {
+					sceneManager.setMower(currentLine);
+
 				}
 
+				if (currentLine.matches(ParsingRegexp.MOVE_SEQUENCE.get())) {
+					sceneManager.setMove(currentLine);
+
+				}
+				log(currentLine);
 			}
 		}
 	}
-
-	
 
 	private static void log(Object aObject) {
 		System.out.println(String.valueOf(aObject));
