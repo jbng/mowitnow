@@ -4,28 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.jbng.actions.api.Step;
 import fr.jbng.actors.api.Mower;
 import fr.jbng.utils.GrassMap;
 
 public class SceneManager {
 	private List<Mower> mowerList;
-	private List<String> moveSequence;
+	private List<Step> moveSequence;
 	private GrassMap grassMap;
 
-	public void setGrassMap(String mapsetting) {
+	public SceneManager() {
+
+		this.mowerList = new ArrayList<Mower>();
+		this.moveSequence = new ArrayList<Step>();
+		this.grassMap = new GrassMap(0, 0);
+	}
+
+	public void initGrassMap(String mapsetting) {
 		List<String> grassMapSettings = processLine(mapsetting, " ");
-		if (!grassMapSettings.isEmpty()){
-			for(String setting: grassMapSettings){
-				
-			}
+		if (!grassMapSettings.isEmpty() && grassMapSettings.size() == 2) {
+
 		}
 	}
 
-	public void setMower(String mowsetting) {
+	public void initMower(String currentLine) {
+		// TODO Auto-generated method stub
 
 	}
 
-	public void setMove(String movesequence) {
+	public void setMoveSequence(String movesequence) {
 
 	}
 
@@ -43,4 +50,5 @@ public class SceneManager {
 		}
 		return result;
 	}
+
 }

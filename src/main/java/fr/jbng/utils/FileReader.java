@@ -35,17 +35,17 @@ public class FileReader {
 			while (scanner.hasNextLine()) {
 				String currentLine = scanner.nextLine();
 				if (currentLine.matches(ParsingRegexp.MAP_SETTING.get())) {
-					sceneManager.setGrassMap(currentLine);
+					sceneManager.initGrassMap(currentLine);
 
 				}
 
 				if (currentLine.matches(ParsingRegexp.MOW_SETTING.get())) {
-					sceneManager.setMower(currentLine);
+					sceneManager.initMower(currentLine);
 
 				}
 
 				if (currentLine.matches(ParsingRegexp.MOVE_SEQUENCE.get())) {
-					sceneManager.setMove(currentLine);
+					sceneManager.setMoveSequence(currentLine);
 
 				}
 				log(currentLine);
