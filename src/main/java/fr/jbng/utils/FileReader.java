@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.jbng.constants.ParsingRegexp;
 import fr.jbng.logic.SceneManager;
@@ -16,10 +18,12 @@ public class FileReader {
 	private SceneManager sceneManager;
 
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
+	
+	private Logger log = LoggerFactory.getLogger(FileReader.class);
 
-	public FileReader(String filename) {
+	public FileReader(String filename, SceneManager sceneManager) {
 		this.filePath = Paths.get(filename);
-		this.sceneManager = new SceneManager();
+		this.sceneManager = sceneManager;
 	}
 
 	public Path getFilePath() {
@@ -48,12 +52,9 @@ public class FileReader {
 					sceneManager.setMoveSequence(currentLine);
 
 				}
-				log(currentLine);
+				log.info(currentLine);
 			}
 		}
 	}
 
-	private static void log(Object aObject) {
-		System.out.println(String.valueOf(aObject));
-	}
 }

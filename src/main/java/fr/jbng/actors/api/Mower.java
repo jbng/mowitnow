@@ -1,5 +1,7 @@
 package fr.jbng.actors.api;
 
+import java.util.List;
+
 import fr.jbng.actions.api.Step;
 import fr.jbng.constants.Positioning;
 import fr.jbng.utils.Coordinates;
@@ -14,4 +16,8 @@ public interface Mower {
 	void setPositioning(Positioning positioning);
 
 	Positioning getPositioning();
+	
+	void setMoveSequence(List<Step> stepList);
+	
+	List<Step> getMoveSequence();
 }

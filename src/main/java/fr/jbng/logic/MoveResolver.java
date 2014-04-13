@@ -21,7 +21,8 @@ public class MoveResolver {
 		Coordinates mowerStart = mower.getCoordinates();
 		Coordinates newCoords = new Coordinates(0,0);
 		if((mower.getPositioning() == Positioning.N && s.getDirection()==Direction.G)||
-				(mower.getPositioning() == Positioning.S && s.getDirection()==Direction.D))	{
+				(mower.getPositioning() == Positioning.S && s.getDirection()==Direction.D)||
+				(mower.getPositioning() == Positioning.W && s.getDirection()==Direction.A))	{
 			int goBackX = mowerStart.getX() - s.getUnit();
 			if(goBackX > 0){
 				newCoords.setX(goBackX);
@@ -31,7 +32,8 @@ public class MoveResolver {
 			newCoords.setY(mowerStart.getY());
 		}
 		if((mower.getPositioning() == Positioning.N && s.getDirection()==Direction.D)||
-				(mower.getPositioning() == Positioning.S && s.getDirection()==Direction.G)	){
+				(mower.getPositioning() == Positioning.S && s.getDirection()==Direction.G)||
+				(mower.getPositioning() == Positioning.E && s.getDirection()==Direction.A)){
 			int goForwardX = mowerStart.getX() + s.getUnit();
 			if(goForwardX < grassmap.getWidth()){
 				newCoords.setX(goForwardX);
@@ -41,7 +43,8 @@ public class MoveResolver {
 			newCoords.setY(mowerStart.getY());
 		}
 		if((mower.getPositioning() == Positioning.E && s.getDirection()==Direction.G)||
-				(mower.getPositioning() == Positioning.W && s.getDirection()==Direction.D)	){
+				(mower.getPositioning() == Positioning.W && s.getDirection()==Direction.D)||
+				(mower.getPositioning() == Positioning.N && s.getDirection()==Direction.A)){
 			int goForwardY = mowerStart.getY() + s.getUnit();
 			if(goForwardY < grassmap.getHeight()){
 				newCoords.setY(goForwardY);
@@ -51,7 +54,8 @@ public class MoveResolver {
 			newCoords.setX(mowerStart.getX());
 		}
 		if((mower.getPositioning() == Positioning.E && s.getDirection()==Direction.D)||
-				(mower.getPositioning() == Positioning.W && s.getDirection()==Direction.G)	){
+				(mower.getPositioning() == Positioning.W && s.getDirection()==Direction.G ||
+						(mower.getPositioning() == Positioning.S && s.getDirection()==Direction.A))	){
 			int goBackY = mowerStart.getY() - s.getUnit();
 			if(goBackY > 0){
 				newCoords.setY(goBackY);

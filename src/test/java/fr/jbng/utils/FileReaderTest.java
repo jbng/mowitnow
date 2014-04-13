@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.jbng.logic.SceneManager;
 import fr.jbng.utils.FileReader;
 
 public class FileReaderTest {
@@ -37,7 +38,8 @@ public class FileReaderTest {
 	public void testFileLoading() throws IOException {
 		assertNotNull("Test file move.txt missing",
 				getClass().getResource("/move.txt"));
-		FileReader reader = new FileReader("/move.txt");
+		SceneManager sceneManager = new SceneManager();
+		FileReader reader = new FileReader("/move.txt",sceneManager);
 		reader.processLineByLine();
 	}
 	

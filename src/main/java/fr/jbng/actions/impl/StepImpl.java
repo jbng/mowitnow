@@ -7,9 +7,8 @@ public class StepImpl implements Step {
 	private Direction direction;
 	private int unit;
 
-	public StepImpl(Direction direction, int unit){
-		this.setDirection(direction);
-		this.setUnit(unit);
+	public StepImpl(){
+		this.setUnit(1);
 	}
 	public Direction getDirection() {
 
