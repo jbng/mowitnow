@@ -1,9 +1,7 @@
 package fr.jbng.logic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,16 +18,17 @@ import fr.jbng.utils.GrassMap;
 
 public class SceneManager {
 	private List<Mower> mowerTempList;
-	private List<Mower> mowerFinalList;
+	private List<Mower> mowerList;
 	private GrassMap grassMap;
 	private Logger log = LoggerFactory.getLogger(SceneManager.class);
 	private MoveResolver moveResolver;
 
 	public SceneManager() {
 
-		this.mowerTempList = new ArrayList<Mower>();
 		this.grassMap = new GrassMap(0, 0);
 		this.moveResolver = new MoveResolver(grassMap);
+		this.mowerTempList = new ArrayList<Mower>();
+		this.mowerList = new ArrayList<Mower>();
 	}
 
 	public void initGrassMap(String mapsetting) {
@@ -54,12 +53,14 @@ public class SceneManager {
 			try {
 				int x = Integer.parseInt(mowerSettings.get(0));
 				int y = Integer.parseInt(mowerSettings.get(1));
-				String positioning = mowerSettings.get(3);
+				String positioning = mowerSettings.get(2);
 				Mower newMower = buildMower(x, y, positioning);
 				if (mowerTempList.isEmpty()) {
 					mowerTempList.add(newMower);
+					log.debug("mowerTempList : mower added");
 				} else {
-					log.error("Mower setting lice order error : " + mowerLine);
+					log.error("Mower Step List setting  order error : "
+							+ mowerLine);
 				}
 
 			} catch (NumberFormatException e) {
@@ -91,6 +92,7 @@ public class SceneManager {
 	}
 
 	public void setMoveSequence(String movesequence) {
+		log.debug("setMoveSequence : " + movesequence);
 		char[] moveChar = movesequence.toCharArray();
 		List<Step> tempMoveSequence = new ArrayList<Step>();
 		if (moveChar.length != 0) {
@@ -106,17 +108,17 @@ public class SceneManager {
 					newStep.setDirection(Direction.G);
 				}
 				tempMoveSequence.add(newStep);
-
-				if (!mowerTempList.isEmpty()) {
-					Mower mower = mowerTempList.get(0);
-					mower.setMoveSequence(tempMoveSequence);
-					this.mowerFinalList.add(mower);
-					this.mowerTempList.remove(0);
-				} else {
-					log.error("Mower setting lice order error : "
-							+ movesequence);
-				}
-
+			}
+			if (!mowerTempList.isEmpty()) {
+				Mower mower = mowerTempList.get(0);
+				mower.setMoveSequence(tempMoveSequence);
+				log.debug("mower : " + mower.toString());
+				this.mowerList.add(mower);
+				log.debug("mowerList : mower added");
+				this.mowerTempList.remove(0);
+				log.debug("mowerTempList : mower removed");
+			} else {
+				log.error("Mower setting order error : " + movesequence);
 			}
 		} else {
 			log.error("Empty or invalid line. Unable to process Move Sequence.");
@@ -124,27 +126,35 @@ public class SceneManager {
 	}
 
 	protected List<String> processLine(String aLine, String delimiter) {
+		log.debug("processLine : " + aLine + " delimiter : " + delimiter);
 		List<String> result = new ArrayList<String>();
 		Scanner scanner = new Scanner(aLine);
 		scanner.useDelimiter(delimiter);
-		if (scanner.hasNext()) {
+		while (scanner.hasNext()) {
 			// assumes the line has a certain structure
 			String value = scanner.next();
 			result.add(value);
-			log.info(value + " processed ");
-		} else {
-			log.error("Empty or invalid line. Unable to process.");
+			log.debug(value + " processed ");
 		}
+		scanner.close();
 		return result;
 	}
 
 	public void resolveMoves() {
-		if (mowerTempList.size() == 0 && mowerFinalList.size() != 0) {
-			for (Mower currentMower : mowerFinalList) {
-				this.moveResolver.getStepsResult(currentMower,
-						currentMower.getMoveSequence());
+		if (mowerTempList.size() == 0 && mowerList.size() != 0) {
+			for (Mower currentMower : mowerList) {
+				Mower mowerMoved = this.moveResolver.getStepsResult(currentMower);
+				log.debug(mowerMoved.getCoordinates().toString()+ " " + mowerMoved.getPositioning());
 			}
 		}
+	}
+
+	public List<Mower> getMowerList() {
+		return mowerList;
+	}
+
+	public void setMowerList(List<Mower> mowerList) {
+		this.mowerList = mowerList;
 	}
 
 }

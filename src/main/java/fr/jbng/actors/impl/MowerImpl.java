@@ -21,7 +21,8 @@ public class MowerImpl implements Mower {
 	public void move(Step step) {
 		// TODO Auto-generated method stub
 	}
-
+	
+	@Override
 	public void setCoordinates(Coordinates coordinates) {
 		this.coordinates = coordinates;
 	}
@@ -55,6 +56,17 @@ public class MowerImpl implements Mower {
 	@Override
 	public List<Step> getMoveSequence() {
 		return moveSequence;
+	}
+	
+	public String toString(){
+		StringBuilder result = new StringBuilder();
+		result.append(this.coordinates.getX());
+		result.append(' ');
+		result.append(this.coordinates.getY());
+		result.append(' ');
+		result.append(this.positioning);
+		return result.toString();
+		
 	}
 
 }

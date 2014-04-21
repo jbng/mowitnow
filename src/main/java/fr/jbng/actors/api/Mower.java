@@ -9,6 +9,8 @@ import fr.jbng.utils.Coordinates;
 public interface Mower {
 	void move(Step step);
 
+	void setCoordinates(Coordinates coordinates);
+	
 	void setCoordinates(int x, int y);
 
 	Coordinates getCoordinates();

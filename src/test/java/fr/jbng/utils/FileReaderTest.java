@@ -40,7 +40,7 @@ public class FileReaderTest {
 				getClass().getResource("/move.txt"));
 		SceneManager sceneManager = new SceneManager();
 		FileReader reader = new FileReader("/move.txt",sceneManager);
-		reader.processLineByLine();
+		//reader.processLineByLine();
 	}
 	
 	
