@@ -8,13 +8,16 @@ To launch application, run Java class src/main/java/fr/jbng/start/Main.java
 Implemented Notions :
 -------------------
 1. Conception with decoupled component, Step and Actors can be changed
-2. Maven
+2. Strategy Pattern Implementation
 3. Regexp pattern matching
-4. Strategy Pattern Implementation
+4. Unit testing
 5. Enumeration
-6. logback library : set debug mode in src/main/resources/logback.xml
-7. Unit testing
-8. generics List
+6. Generics List
+
+External Libraries : 
+------------------
+1. maven : mvn test
+2. logback library : set debug mode in src/main/resources/logback.xml
 
 Enhancements
 ------------

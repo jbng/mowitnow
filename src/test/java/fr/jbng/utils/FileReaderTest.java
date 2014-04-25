@@ -39,7 +39,7 @@ public class FileReaderTest {
 		assertNotNull("Test file move.txt missing",
 				getClass().getResource("/move.txt"));
 		SceneManager sceneManager = new SceneManager();
-		FileReader reader = new FileReader("/move.txt",sceneManager);
+		FileReader reader = new FileReader(getClass().getResourceAsStream("/move.txt"),sceneManager);
 	}
 	
 	
