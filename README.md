@@ -26,5 +26,5 @@ Enhancements
 3. Should implement single Step processing with user interaction
 4. Should try Java 8 Streams API with Lists processing.
 5. Should try a nicer functional way of coding
-6. Should try to implement mower front-end rendering with Nashorn ad canvas
+6. Should try to implement mower front-end rendering with Nashorn and canvas
 
