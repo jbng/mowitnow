@@ -1,4 +1,4 @@
-package fr.jbng.logic;
+package fr.jbng.logic.impl;
 
 import java.util.List;
 
@@ -6,21 +6,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.jbng.actions.api.Step;
+import fr.jbng.actors.api.MovesMatrix;
 import fr.jbng.actors.api.Mower;
 import fr.jbng.constants.Direction;
 import fr.jbng.constants.Positioning;
+import fr.jbng.logic.api.MoveResolverStrategy;
 import fr.jbng.utils.Coordinates;
-import fr.jbng.utils.GrassMap;
 
-public class MoveResolver {
-	private Logger log = LoggerFactory.getLogger(MoveResolver.class);
+public class MoveResolverStrategyImpl implements MoveResolverStrategy {
+	private Logger log = LoggerFactory.getLogger(MoveResolverStrategyImpl.class);
 
-	private GrassMap grassmap;
+	private MovesMatrix grassmap;
 
-	public MoveResolver(GrassMap grassmap) {
+	public MoveResolverStrategyImpl(MovesMatrix grassmap) {
 		this.grassmap = grassmap;
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.jbng.logic.MoveResolverStrategy#getStepResult(fr.jbng.actors.api.Mower, fr.jbng.actions.api.Step)
+	 */
+	@Override
 	public Mower getStepResult(Mower mower, Step s) {
 		Coordinates mowerCoords = mower.getCoordinates();
 		if ((mower.getPositioning() == Positioning.W && s.getDirection() == Direction.A)) {
@@ -61,6 +66,10 @@ public class MoveResolver {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.jbng.logic.MoveResolverStrategy#getStepsResult(fr.jbng.actors.api.Mower)
+	 */
+	@Override
 	public Mower getStepsResult(Mower mower) {
 		List<Step> stepList = mower.getMoveSequence();
 		Mower tempMower = mower;
@@ -72,7 +81,7 @@ public class MoveResolver {
 		return tempMower;
 	}
 
-	public void setGrassMap(GrassMap map) {
+	public void setGrassMap(MovesMatrix map) {
 		this.grassmap = map;
 	}
 

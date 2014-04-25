@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.jbng.constants.ParsingRegexp;
-import fr.jbng.logic.SceneManager;
+import fr.jbng.start.SceneManager;
 
 public class FileReader {
 	private Path filePath = null;

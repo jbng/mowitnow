@@ -1,4 +1,4 @@
-package fr.jbng.logic;
+package fr.jbng.start;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,23 +10,26 @@ import org.slf4j.LoggerFactory;
 
 import fr.jbng.actions.api.Step;
 import fr.jbng.actions.impl.StepImpl;
+import fr.jbng.actors.api.MovesMatrix;
 import fr.jbng.actors.api.Mower;
+import fr.jbng.actors.impl.MovesMatrixImpl;
 import fr.jbng.actors.impl.MowerImpl;
 import fr.jbng.constants.Direction;
 import fr.jbng.constants.Positioning;
-import fr.jbng.utils.GrassMap;
+import fr.jbng.logic.api.MoveResolverStrategy;
+import fr.jbng.logic.impl.MoveResolverStrategyImpl;
 
 public class SceneManager {
 	private List<Mower> mowerTempList;
 	private List<Mower> mowerList;
-	private GrassMap grassMap;
+	private MovesMatrix grassMap;
 	private Logger log = LoggerFactory.getLogger(SceneManager.class);
-	private MoveResolver moveResolver;
+	private MoveResolverStrategy moveResolver;
 
 	public SceneManager() {
 
-		this.grassMap = new GrassMap(0, 0);
-		this.moveResolver = new MoveResolver(grassMap);
+		this.grassMap = new MovesMatrixImpl(0, 0);
+		this.moveResolver = new MoveResolverStrategyImpl(grassMap);
 		this.mowerTempList = new ArrayList<Mower>();
 		this.mowerList = new ArrayList<Mower>();
 	}

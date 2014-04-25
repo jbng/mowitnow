@@ -1,8 +1,9 @@
+package fr.jbng.start;
+
 import java.io.InputStream;
 import java.io.IOException;
 
 import fr.jbng.actors.api.Mower;
-import fr.jbng.logic.SceneManager;
 import fr.jbng.utils.FileReader;
 
 public class Main {

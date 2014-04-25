@@ -12,14 +12,17 @@ import org.junit.Test;
 
 import fr.jbng.actions.api.Step;
 import fr.jbng.actions.impl.StepImpl;
+import fr.jbng.actors.api.MovesMatrix;
 import fr.jbng.actors.api.Mower;
+import fr.jbng.actors.impl.MovesMatrixImpl;
 import fr.jbng.actors.impl.MowerImpl;
 import fr.jbng.constants.Direction;
 import fr.jbng.constants.Positioning;
+import fr.jbng.logic.api.MoveResolverStrategy;
+import fr.jbng.logic.impl.MoveResolverStrategyImpl;
 import fr.jbng.utils.Coordinates;
-import fr.jbng.utils.GrassMap;
 
-public class MoveResolverTest {
+public class MoveResolverStrategyTest {
 	
 
 	@Before
@@ -40,8 +43,8 @@ public class MoveResolverTest {
 		mowerN.setPositioning(Positioning.N);
 		mowerN.setCoordinates(coordOne);
 		assertEquals("1 1 N",mowerN.toString());
-		GrassMap grassmap = new GrassMap(5,5);
-		MoveResolver moveResolve = new MoveResolver(grassmap);
+		MovesMatrix grassmap = new MovesMatrixImpl(5,5);
+		MoveResolverStrategy moveResolve = new MoveResolverStrategyImpl(grassmap);
 		
 		Step stepA = new StepImpl();
 		stepA.setDirection(Direction.A);
